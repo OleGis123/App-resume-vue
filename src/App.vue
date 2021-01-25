@@ -1,26 +1,40 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container column">
+    <app-form @defineBlock="addBlock"></app-form>
+    <app-resume :blocks="blocks"></app-resume>
+  </div>
+  <app-comments :api="API"></app-comments>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AppForm from '@/AppForm'
+import AppResume from '@/AppResume'
+import AppComments from '@/AppComments'
 
 export default {
-  name: 'App',
+  data () {
+    return {
+      API: 'https://jsonplaceholder.typicode.com/comments?_limit=42',
+      blocks: []
+    }
+  },
+  methods: {
+    addBlock (type, text) {
+      const typeComponent = 'App' + type.charAt().toUpperCase() + type.slice(1)
+      this.blocks.push({
+        type: typeComponent,
+        text
+      })
+    }
+  },
   components: {
-    HelloWorld
+    AppForm,
+    AppResume,
+    AppComments
   }
 }
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style>
+
 </style>

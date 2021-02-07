@@ -1,3 +1,5 @@
+https://vue-resume-6a7ce.web.app/
+
 # ex.2
 
 ## Project setup
